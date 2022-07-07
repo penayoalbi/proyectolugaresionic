@@ -23,7 +23,10 @@ const routes: Routes = [
         loadChildren: () => import('./lugares/detalle-lugar/detalle-lugar.module').then(m => m.DetalleLugarPageModule)
       }
     ]
-    
+  },
+  {
+    path:'new-lugar',
+    loadChildren: () => import('./lugares/add-lugar/add-lugar.module').then(m => m.AddLugarPageModule)
   },
   {
     path: 'detalle-lugar',

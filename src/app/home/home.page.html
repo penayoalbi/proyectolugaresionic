@@ -1,20 +1,30 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+      <ion-button slot="start" >
+        <ion-back-button defaulHref="/lugares"></ion-back-button>
+      </ion-button>
     <ion-title>
      Home
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="primary">
+        <ion-icon >user</ion-icon>
+      </ion-button>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-list>
+    <ion-card *ngFor="let fotos of Fotos">
+      <img [src]="fotos.thumbnailUrl">
+      <ion-card-content>
+        <p>{{fotos.title}}</p>
+        <p>{{fotos.albumId}}</p>
+        <a [href]="fotos.url" target="_blank">{{fotos.url}}</a>
+      </ion-card-content>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+    </ion-card>
+  </ion-list>
 </ion-content>

@@ -10,22 +10,34 @@ export class LugaresService {
     {
     id:'1',
     titulo: 'torre eiffel',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Tour_eiffel_at_sunrise_from_the_trocadero.jpg/275px-Tour_eiffel_at_sunrise_from_the_trocadero.jpg',
+    imageURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Tour_eiffel_at_sunrise_from_the_trocadero.jpg/275px-Tour_eiffel_at_sunrise_from_the_trocadero.jpg',
     comentario:['Hermoso'],
     },
     {
       id:'2',
       titulo: 'Coliceo',
-      image: '',
-      comentario:['Hermoso'],
+      imageURL: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkXpOuvO2l5d6cdXJsqA6trbW7VOHeF8q6gA&usqp=CAU',
+      comentario:['Hermoso','Es magnifico'],
       },
     {
       
       id:'3',
       titulo: 'Cataratas',
-      image: '',
-      comentario: ['Maravilloso'],
-    }
+      imageURL: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT29jAkOANk79GhmO1D_8NnQDD2BML8H5eywg&usqp=CAU',
+      comentario: [],
+    },
+    {
+      id:'4',
+      titulo: 'Coliceo',
+      imageURL: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkXpOuvO2l5d6cdXJsqA6trbW7VOHeF8q6gA&usqp=CAU',
+      comentario:['Hermoso','Es magnifico'],
+    },
+    {
+      id:'5',
+      titulo: 'Coliceo',
+      imageURL: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkXpOuvO2l5d6cdXJsqA6trbW7VOHeF8q6gA&usqp=CAU',
+      comentario:['Hermoso','Es magnifico'],
+    },
   ]
 
   constructor( ) { }
@@ -42,7 +54,19 @@ export class LugaresService {
       })
     }
   }
-  addLugar(titulo: string, image: string) {}
-  deleteLugar(){}
+  addLugar(titulo: string, imageURL: string) {
+    this.lugar.push({
+      titulo,
+      imageURL,
+      comentario: [],
+      id: this.lugar.length + 1 +"",
+    })
+  }
+
+  deleteLugar(lugarId: string){
+    this.lugar = this.lugar.filter(lugar => {
+      return lugar.id !== lugarId
+    });
+  }
 
 }

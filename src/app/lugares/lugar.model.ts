@@ -1,6 +1,6 @@
 export interface lugar {
     id: string;
     titulo: string;
-    image: string;
+    imageURL: string;
     comentario: string[];
 }

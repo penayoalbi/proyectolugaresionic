@@ -4,19 +4,36 @@
       <ion-back-button defaulHref="/lugares"></ion-back-button>
     </ion-button>
     <ion-title>{{lugar.titulo}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="danger" (click)="deleteLugar()">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-grid class="ion-no-padding">
     <ion-row>
-      <ion-col >
-        <ion-img [src]="lugar.image"></ion-img>
+      <ion-col class="ion-no-padding" >
+        <ion-img [src]="lugar.imageURL"></ion-img>
       </ion-col>
     </ion-row>
-    <ion-card>
-
-    </ion-card>
+    <ion-row>
+      <ion-col>
+        <ion-list *ngIf="lugar.comentario && lugar.comentario.length >0; else noComentario">
+          <ion-item *ngFor="let coment of lugar.comentario">
+            {{coment}}
+          </ion-item>
+        </ion-list>
+        <ng-template #noComentario>
+          <ion-text>
+            <p class="ion-text-center">Aún no hay comentarios</p>
+          </ion-text>
+        </ng-template>
+      </ion-col>
+    </ion-row>
+    
   </ion-grid>
 
 </ion-content>
