@@ -1,30 +1,38 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header no-border>
+  <ion-toolbar color="tertiary">
+    <ion-title>Home</ion-title>
+    <ion-buttons>
       <ion-button slot="start" >
         <ion-back-button defaulHref="/lugares"></ion-back-button>
       </ion-button>
-    <ion-title>
-     Home
-    </ion-title>
+    </ion-buttons><!--
     <ion-buttons slot="end">
-      <ion-button color="primary">
-        <ion-icon >user</ion-icon>
+      <ion-button color="primary" (click)="inicioSesion()">
+        <ion-icon name="person"></ion-icon>
       </ion-button>
-    </ion-buttons>
-
+    </ion-buttons>-->
+  </ion-toolbar>
+  <ion-toolbar color="tertiery">
+    <ion-searchbar placeholder="Buscar lugar..." animated
+      (ionChange)="buscarLugar($event)">
+    </ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-list>
-    <ion-card *ngFor="let fotos of Fotos">
-      <img [src]="fotos.thumbnailUrl">
-      <ion-card-content>
-        <p>{{fotos.title}}</p>
-        <p>{{fotos.albumId}}</p>
-        <a [href]="fotos.url" target="_blank">{{fotos.url}}</a>
-      </ion-card-content>
-
-    </ion-card>
+<ion-content>
+  <ion-list *ngIf="Lugar.length === 0" >
+    <ion-item *ngFor="let item of [1,1,1,1,1,1,1,1,1,1]">
+      <ion-label>
+        <ion-skeleton-text width="30%"></ion-skeleton-text>
+        <ion-skeleton-text width="60%"></ion-skeleton-text>
+      </ion-label>
+    </ion-item>
   </ion-list>
+
+  <ion-list *ngIf="Lugar.length > 0">
+    <ion-item *ngFor="let item of Lugar | filtro:textoBuscar">
+      <ion-label>{{item.titulo}}</ion-label>
+    </ion-item>
+  </ion-list>
+ 
 </ion-content>

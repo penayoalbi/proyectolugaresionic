@@ -2,24 +2,37 @@
   <ion-toolbar color="primary">
     <ion-title>LUGARES</ion-title>
     <ion-buttons slot="end">
-    <ion-button color="light" (click)="goToHome()">
-      <ion-icon name="globe"></ion-icon>
-    </ion-button>
+      <ion-button color="light" (click)="goToHome()">
+        <ion-icon name="globe"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item
-     *ngFor="let lugares of lugar" [routerLink]="['/lugares',lugares.id]">
+    <!--[routerLink]="['/lugares/buscar',lugares.id]"-->
+    <ion-item *ngFor="let lugares of lugar" [routerLink]="['/lugares',lugares.id]">
      <ion-avatar slot="start">
-       <ion-img [src]="lugares.imageURL"></ion-img>
+       <ion-img [src]="lugares.imagen"></ion-img>
      </ion-avatar>
      <ion-label>
         {{lugares.titulo}}
      </ion-label>
+     <ion-buttons>
+      <ion-button>
+        <ion-icon name="heart"></ion-icon>
+      </ion-button>
+     </ion-buttons>
+     <ion-card *ngIf="verDetalle===true">
+      <ion-label>{{lugares.titulo}}</ion-label>
+      <ion-avatar>
+        <ion-img [src]="lugares.imagen"></ion-img>
+      </ion-avatar>
+      <ion-text>{{lugares.id}}</ion-text>
+    </ion-card>
     </ion-item>
+    
   </ion-list>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="danger" (click)="addLugar()">

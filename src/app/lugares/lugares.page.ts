@@ -1,26 +1,49 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from '../servicios/api.service';
+import { LugarService } from '../servicios/lugar.service';
 import {lugar} from './lugar.model'
-import { LugaresService } from './lugares.service';
+
 @Component({
   selector: 'app-lugares',
   templateUrl: './lugares.page.html',
   styleUrls: ['./lugares.page.scss'],
 })
 export class LugaresPage implements OnInit {
-  lugar
+  lugar: any = [];
+  nuevo: boolean;
+  color: '';//agregar esto
+  filtrarPorNombre: '';
+  verDetalle: boolean;
+
 //inicia el servicio
   constructor( 
-    private lugarService: LugaresService,
-    private router: Router) { }
+    private router: Router,
+    private api: ApiService,
+    private lugarService: LugarService){ }
  
   ngOnInit() {
-   this.lugar = this.lugarService.getLugares()
+    this.listarLugares();
   }
 
-  ionViewWillEnter(){
-    this.lugar = this.lugarService.getLugares()
+  listarLugares(){
+    this.api.traerLugar().subscribe(
+      resp=>{
+        this.lugar =resp;
+      console.log(this.lugar)
+    },
+      err =>console.error('error en listar lugares')
+    );
   }
+  mostrarDetalle(){
+    this.verDetalle=true;
+    console.log('click en detalle')
+  }
+/*
+  ionViewWillEnter(){
+    this.lugar = this.lugarService.getLugar();
+  }*/
+  
   addLugar(){
     //console.log('click');
     this.router.navigate(['/new-lugar']);

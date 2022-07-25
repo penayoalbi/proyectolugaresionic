@@ -21,16 +21,33 @@ const routes: Routes = [
       {
         path:":lugarId",
         loadChildren: () => import('./lugares/detalle-lugar/detalle-lugar.module').then(m => m.DetalleLugarPageModule)
+      },/*
+      {
+        path:'buscar',
+        children:[
+          {
+          path:":lugarId",
+        loadChildren: () => import('./lugares/detalle-lugar/detalle-lugar.module').then(m => m.DetalleLugarPageModule)
+          }
+        ]
+      },*/
+      {
+        path: 'detalle-lugar',
+    loadChildren: () => import('./lugares/detalle-lugar/detalle-lugar.module').then( m => m.DetalleLugarPageModule)
       }
     ]
   },
   {
     path:'new-lugar',
     loadChildren: () => import('./lugares/add-lugar/add-lugar.module').then(m => m.AddLugarPageModule)
-  },
+  },/*
   {
     path: 'detalle-lugar',
     loadChildren: () => import('./lugares/detalle-lugar/detalle-lugar.module').then( m => m.DetalleLugarPageModule)
+  },*/
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
 ];
 
